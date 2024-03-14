@@ -12,6 +12,7 @@ import { useEffect } from "react"
 import Loader from "@/Components/Loader"
 
 const Sign = () => {
+  console.log(process.env.JWT_SECRET as string)
   const router = useRouter()
   const authCredentials = useAuthCookie()
   useEffect(() => {
