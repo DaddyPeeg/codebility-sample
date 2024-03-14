@@ -1,4 +1,5 @@
 import { create } from "zustand"
+import { Client } from "@/types"
 
 import Image, { StaticImageData } from "next/image"
 
@@ -31,19 +32,24 @@ export type ModalType =
   | "todoAddModal"
   | "todoViewModal"
   | "todoEditModal"
+  | "projectAddModal"
+  | "projectEditModal"
+  | "companyAddModal"
+  | "companyEditModal"
+  | "companyViewModal"
 
 interface ModalStore {
   type: ModalType | null
-  data?: ModalData
+  data?: Client
   isOpen: boolean
-  onOpen: (type: ModalType, data?: ModalData) => void
+  onOpen: (type: ModalType, data?: Client) => void
   onClose: () => void
 }
 
 export const useModal = create<ModalStore>((set) => ({
   type: null,
-  data: {},
+  data: undefined, // Initialize data as undefined
   isOpen: false,
-  onOpen: (type, data = {}) => set({ isOpen: true, type, data }),
+  onOpen: (type, data = undefined) => set({ isOpen: true, type, data }), // Pass undefined as default data
   onClose: () => set({ type: null, isOpen: false }),
 }))

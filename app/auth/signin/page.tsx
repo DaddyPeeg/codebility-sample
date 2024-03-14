@@ -15,11 +15,12 @@ const Sign = () => {
   const router = useRouter()
   const authCredentials = useAuthCookie()
   useEffect(() => {
+    console.log(router)
+    console.log(authCredentials?.status)
     if (authCredentials?.status === "authenticated") {
       router.push("/dashboard")
     }
   }, [authCredentials?.status, router])
-
   if (authCredentials?.status === "loading" || authCredentials?.status === "authenticated")
     return (
       <div className="fixed left-0 top-0 z-20 flex h-screen w-screen flex-col items-center justify-center gap-10 bg-black-400">

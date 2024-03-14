@@ -31,12 +31,12 @@ export interface Client {
   id: string
   company_name: string
   company_logo?: string
-  working_hours?: string
+  working_hours?: string[]
   email?: string
   contact_number?: string
   linkedin_link?: string
   location?: string
-  company_hist?: string //history
+  company_hist?: string[] //history
   created_at: string
   updated_at: string
   projects: Project[]

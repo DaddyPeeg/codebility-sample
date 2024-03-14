@@ -12,7 +12,7 @@ const CompanyProfileModal = () => {
   const isModalOpen = isOpen && type === "companyProfile"
   return (
     <>
-      <Dialog open={isModalOpen} onOpenChange={() => onClose()}>
+      {/* <Dialog open={isModalOpen} onOpenChange={() => onClose()}>
         <DialogContent className="h-[30rem] max-w-md overflow-y-auto px-8 py-8 sm:h-auto sm:max-w-2xl sm:px-12 sm:py-16">
           <DialogHeader>
             <DialogTitle className="text-center">
@@ -74,7 +74,7 @@ const CompanyProfileModal = () => {
             <p className="mt-4 text-sm sm:mt-8">{data?.footerText}</p>
           </DialogFooter>
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
     </>
   )
 }

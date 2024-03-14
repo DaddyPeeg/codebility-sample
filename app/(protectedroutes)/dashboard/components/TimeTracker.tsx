@@ -9,25 +9,12 @@ import useAuthCookie from "@/hooks/use-cookie"
 import { useEffect, useState } from "react"
 import { getUserDataById } from "@/app/api"
 import SmallLoader from "@/Components/SmallLoader"
+import useAuth from "@/hooks/use-auth"
 
 const TimeTracker = () => {
-  const auth = useAuthCookie()
+  const { isLoading, userData } = useAuth()
 
-  const [userData, setUserData] = useState<any>()
-  const [isLoading, setIsLoading] = useState(true)
-  console.log(isLoading)
-  useEffect(() => {
-    async function getUserData() {
-      setIsLoading(true)
-      const user: any = await getUserDataById(auth.data.id)
-      setUserData(user.data)
-      setIsLoading(false)
-    }
-    if (auth.status === "authenticated" && !userData) {
-      getUserData()
-    }
-  }, [auth.status, userData])
-
+  //Date Format
   const currentDate = Date.now()
   const formattedDate = new Intl.DateTimeFormat("en-US", {
     year: "numeric",
@@ -37,9 +24,9 @@ const TimeTracker = () => {
   })
     .format(currentDate)
     .split(", ")
-
   const newFormatDate = `${formattedDate[1]}, ${formattedDate[2]}, ${formattedDate[0]}`
 
+  console.log(userData)
   return (
     <Box>
       {!isLoading ? (
@@ -48,7 +35,7 @@ const TimeTracker = () => {
             <p className="text-md">Hello!</p>
             <p className="text-lg font-semibold">{userData?.name ?? "Loading..."}</p>
             <Avatar className={`h-24 w-24 bg-blue-100`}>
-              <Image alt="Avatar" src={photo} width={96} height={96} />
+              <Image alt="Avatar" src={userData?.image_url || photo} width={96} height={96} />
             </Avatar>
             <p className="text-sm">My Time Schedule</p>
             <p className="text-md">
